@@ -1,20 +1,20 @@
-.PHONY: clean control compile write
+.PHONY: clean game compile init
 compile: compile1 compile2
-compile1: wordle.o control.o
-	@gcc -o controlme wordle.o control.o
-compile2: write.o
-	@gcc -o writeme write.o
-control.o: control.c wordle.h
-	@gcc -c control.c
-write.o: write.c
-	@gcc -c write.c
+compile1: wordle.o game.o
+	@gcc -o gameme wordle.o game.o
+compile2: init.o
+	@gcc -o initme init.o
+game.o: game.c wordle.h
+	@gcc -c game.c
 wordle.o: wordle.c
 	@gcc -c wordle.c
-control: controlme
-	@./controlme $(ARGS)
-write: writeme
-	@./writeme
+init.o: init.c
+	@gcc -c init.c
+game: gameme
+	@./gameme $(ARGS)
+init: initme
+	@./initme
 clean:
 	rm *.o
-	rm controlme
-	rm writeme
+	rm gameme
+	rm initme
