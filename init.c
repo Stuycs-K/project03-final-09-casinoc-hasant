@@ -10,6 +10,8 @@ union semun {
 int main() {
   int semd;
   int shmd;
+  semctl(semd, 0, IPC_RMID); // Clean up semaphore
+  shmctl(shmd, IPC_RMID, NULL); // Clean up shared memory
   int *data;
 
   //create initial files
@@ -19,7 +21,7 @@ int main() {
   int answer = open("answer.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
   write(answer, input, strlen(input)); //write the word to answer file
   close(answer);
-  int guess = open("guess.txt", O_CREAT, 0644); //create empty guess file
+  int guess = open("guess.txt", O_CREAT | O_TRUNC, 0644); //create empty guess file
   close(guess);
 
   //semaphore and shared memory
@@ -28,7 +30,7 @@ int main() {
     perror("Could not open semaphore");
     exit(1);
   }
-  union semun us; 
+  union semun us;
   us.val = 1;
   if (semctl(semd, 0, SETVAL, us) == -1) { //Set semaphore value
     perror("Error setting semaphore value");
