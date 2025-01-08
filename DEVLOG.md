@@ -26,5 +26,7 @@ This document must be updated daily by EACH group member.
 - Completed readme (5 min)
 
 ### 2024-01-08 - Work in init.c
-- Creation of initial guess and answer files
-- Creation of semaphore and shared memory segment
+- Creation of initial guess and answer files (15 minutes)
+- Creation of semaphore and shared memory segment (15 minutes)
+- Added process to remove files, shared memory, semaphore (5 minutes)
+- Removed compilation errors (5 minutes)
