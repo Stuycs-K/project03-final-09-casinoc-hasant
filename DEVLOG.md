@@ -24,3 +24,7 @@ This document must be updated daily by EACH group member.
 ### 2024-01-07 - Project Proposal and Readme
 - Completed project proposal details and timeline (25 minutes)
 - Completed readme (5 min)
+
+### 2024-01-08 - Work in init.c
+- Creation of initial guess and answer files
+- Creation of semaphore and shared memory segment
