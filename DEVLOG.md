@@ -15,6 +15,11 @@ This document must be updated daily by EACH group member.
 - Added the main argument processor in game file for the guess and answer
 - (40 min)
 
+### 2024-01-06 - Added skeleton files
+- Created the files that were needed for the project
+- Added the includes in the header file and added the header include to all other files
+- (40 min)
+
 ## Tanzeem Hasan
 
 ### 2024-01-06 - Project Proposal
