@@ -1,3 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <dirent.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <string.h>
+#include <signal.h>
+#include <errno.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/sem.h>
+#include <sys/shm.h>
+#include <sys/ipc.h>
 #include "wordle.h"
 
 union semun {
@@ -37,7 +50,7 @@ int main() {
     semctl(semd, 0, IPC_RMID); //Clean up semaphore
     exit(1);
   }
-  shmd = shmget(KEY, sizeof(int), IPC_CREAT, 0600);
+  shmd = shmget(SHMKEY, sizeof(int), IPC_CREAT | 0600);
   if (shmd == -1) {
     perror("Error creating shared memory");
     semctl(semd, 0, IPC_RMID); //Clean up semaphore
@@ -52,5 +65,5 @@ int main() {
   }
   *data = 0;
   shmdt(data);
-  return 0l
+  return 0;
 }
