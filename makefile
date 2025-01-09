@@ -18,3 +18,4 @@ clean:
 	rm *.o
 	rm gameme
 	rm initme
+	rm *.txt
