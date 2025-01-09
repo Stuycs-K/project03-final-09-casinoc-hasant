@@ -15,9 +15,14 @@ This document must be updated daily by EACH group member.
 - Added the main argument processor in game file for the guess and answer
 - (40 min)
 
-### 2024-01-06 - Added skeleton files
+### 2024-01-08 - Added skeleton files
 - Created the files that were needed for the project
 - Added the includes in the header file and added the header include to all other files
+- (40 min)
+
+### 2024-01-09 - Changed idea of game so had to redo some stuff
+- Came up with new idea for wordle game
+- Deleted all unecessary components from previous version of game
 - (40 min)
 
 ## Tanzeem Hasan
