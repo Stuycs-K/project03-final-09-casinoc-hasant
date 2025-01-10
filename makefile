@@ -4,7 +4,7 @@ compile: wordle.o init.o
 wordle.o: wordle.c
 	@gcc -c wordle.c
 init.o: init.c wordle.h
-	@gcc -c init.c
+	@gcc -c init.c $(ARGS)
 init: initme
 	@./initme
 clean:
