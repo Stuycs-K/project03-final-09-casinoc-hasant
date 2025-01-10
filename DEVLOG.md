@@ -25,6 +25,12 @@ This document must be updated daily by EACH group member.
 - Deleted all unnecessary components from previous version of game
 - (40 min)
 
+### 2024-01-10 - Reconfigured project slightly and make changes accordingly
+- Added args functionality for init file
+- Deleted unecessary functions in wordle file
+- (40 min)
+
+
 ## Tanzeem Hasan
 
 ### 2024-01-06 - Project Proposal
