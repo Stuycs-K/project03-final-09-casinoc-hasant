@@ -20,13 +20,6 @@ union semun {
   struct seminfo  *__buf;  /* Buffer for IPC_INFO */
 };                         /* (Linux-specific) */
 
-void guess_function(){
-  FILE *fd;
-  int *data;
-  int semd;
-  int shmd;
-}
-
 void answer_function(){
   struct sembuf sb;
   FILE *fd;
@@ -38,7 +31,7 @@ void answer_function(){
   char input[200];
   char last_line[200];
 
-  printf("Waiting for Guesser to make a guess...\n");
+  printf("Waiting for other player to enter word...\n");
   semd = semget(SEMKEY, 1, 0);
   sb.sem_num = 0;
   sb.sem_flg = SEM_UNDO;
