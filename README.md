@@ -14,7 +14,4 @@ The player attempts to guess the target word within six attempts. The program wi
 ### Instructions:
 
 How does the user install/compile/run the program.
-The person who gives hints and first makes the word will use "make init" to initialize the program.
-
-How does the user interact with this program?
-The guesser will use "make game ARGS="guess"" to make guesses. The hinter will use "make game ARGS="answer"" to provide hints. Each user will follow after the other, up to a maximum of 6 guesses.
+First run "make compile". Then both players run "make init" to write a five letter word to a file for the other person to guess. Once both players have submitted their word, then both players will start playing.
