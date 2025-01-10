@@ -32,6 +32,7 @@ int main(int argc, char *argv[]) {
   semd = semget(SEMKEY, 1, IPC_CREAT | IPC_EXCL | 0644);
   if (semd == -1) {
     perror("Could not open semaphore");
+    semctl(semd, 0, IPC_RMID);
     exit(1);
   }
   union semun us;
