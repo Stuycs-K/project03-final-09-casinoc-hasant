@@ -22,7 +22,7 @@ This document must be updated daily by EACH group member.
 
 ### 2024-01-09 - Changed idea of game so had to redo some stuff
 - Came up with new idea for wordle game
-- Deleted all unecessary components from previous version of game
+- Deleted all unnecessary components from previous version of game
 - (40 min)
 
 ## Tanzeem Hasan
@@ -40,3 +40,10 @@ This document must be updated daily by EACH group member.
 - Creation of semaphore and shared memory segment (15 minutes)
 - Added process to remove files, shared memory, semaphore (5 minutes)
 - Removed compilation errors (5 minutes)
+
+### 2024-01-09 - Additional modifications to Proposal
+- Made additional modifications to the proposal after feedback from Mr. K
+- Determined what components are necessary for new wordle game
+(40 mins)
+
+### 2024-01-10 - 
