@@ -13,30 +13,11 @@
 #include <sys/ipc.h>
 #include "wordle.h"
 
-union semun {
-  int              val;    /* Value for SETVAL */
-  struct semid_ds *buf;    /* Buffer for IPC_STAT, IPC_SET */
-  unsigned short  *array;  /* Array for GETALL, SETALL */
-  struct seminfo  *__buf;  /* Buffer for IPC_INFO */
-};                         /* (Linux-specific) */
+void guess_function1(){
+  open("guess1.txt", O_WRONLY);
 
-void answer_function(){
-  struct sembuf sb;
-  FILE *fd;
-  int semd;
-  int shmd;
-  int *bytes_wrote;
-  int bytes_writing;
-  int seeking;
-  char input[200];
-  char last_line[200];
+}
+void guess_function2(){
+  open("guess2.txt", O_WRONLY);
 
-  printf("Waiting for other player to enter word...\n");
-  semd = semget(SEMKEY, 1, 0);
-  sb.sem_num = 0;
-  sb.sem_flg = SEM_UNDO;
-  sb.sem_op = -1;
-  semop(semd, &sb, 1);
-  shmd = shmget(SHMKEY, 0, 0);
-  bytes_wrote = shmat(shmd, 0, 0);
 }
