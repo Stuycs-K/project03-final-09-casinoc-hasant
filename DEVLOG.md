@@ -60,6 +60,6 @@ This document must be updated daily by EACH group member.
 ### 2024-01-10 - Modified initial file Creation
 - Modified creation of initial files, introduced two file structure, managed confusions (40 mins)
 
-### 2024-01-11 - Introducing Client-Server Functionality
+### 2024-01-13 - Introducing Client-Server Functionality
 - Introducing idea of client-server functionality in project
 - Beginning to implement client-server functionality
