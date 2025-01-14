@@ -30,6 +30,11 @@ This document must be updated daily by EACH group member.
 - Deleted unecessary functions in wordle file
 - (40 min)
 
+### 2024-01-13 - Readjusted our initialization idea for the beginning of the game
+- Discussed in great detail how the server/client relationship works and how it would be useful for our wordle game
+- Removed all semaphore stuff in previous draft of the project
+- (40 min)
+
 
 ## Tanzeem Hasan
 
@@ -52,4 +57,9 @@ This document must be updated daily by EACH group member.
 - Determined what components are necessary for new wordle game
 (40 mins)
 
-### 2024-01-10 - 
+### 2024-01-10 - Modified initial file Creation
+- Modified creation of initial files, introduced two file structure, managed confusions (40 mins)
+
+### 2024-01-13 - Introducing Client-Server Functionality
+- Introducing idea of client-server functionality in project
+- Beginning to implement client-server functionality
