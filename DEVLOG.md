@@ -35,7 +35,7 @@ This document must be updated daily by EACH group member.
 - Removed all semaphore stuff in previous draft of the project
 - (50 min)
 
-- ### 2024-01-14 - Added crude functions for pipe networking
+### 2024-01-14 - Added crude functions for pipe networking
 - Put in server and client functions for handshake in wordle and header file
 - Added multiple argument functionality for main function in init file for Player 1 and Player 2 relating to the server and client
 - (40 min)
