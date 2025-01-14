@@ -11,6 +11,7 @@
 #include <sys/sem.h>
 #include <sys/shm.h>
 #include <sys/ipc.h>
+#include <ctype.h>
 #include "wordle.h"
 
 int server_setup() {
@@ -69,7 +70,7 @@ int server_handshake(int *to_client) {
   }
   read(df, ack, sizeof(ack));
   printf("ack %s\n", ack);
-  
+
   from_client = df;
   return from_client;
 }
@@ -120,7 +121,7 @@ int client_handshake(int *to_server) {
   char ack[100];
   sprintf(ack, "%d", change_num);
   write(fd, ack, sizeof(ack));
-  
+
   from_server = df;
   return from_server;
 }
@@ -128,6 +129,9 @@ int client_handshake(int *to_server) {
 void guess_function1(){
   int ans = open("answer1.txt", O_RDONLY);
   char guess[6];
+  for (int i = 0; i < strlen(guess); i++) {
+    guess[i] = toUpper(guess[i]);
+  }
   read(ans, guess, sizeof(char)*6);
 
   int fd = open("guess1.txt", O_WRONLY);
@@ -135,23 +139,75 @@ void guess_function1(){
 
   printf("Enter a five letter guess: ");
   fgets(buffer, sizeof(buffer), stdin);
-  printf("\n");
-
   for (int i = 0; i < strlen(buffer); i++) {
-    if (buffer[i] != guess[i]){
-      //2 cases: 1 where it is in wrong location and other where it is not present
-      
+    buffer[i] = toUpper(buffer[i]);
+  }
+  printf("\n");
+  /*
+  - If same letter in same pos: toUpper
+  - If same letter in wrong pos: set to .
+      - This seems like it would need me to compare each character of buffer against each
+  - If wrong letter: set to -
+  */
+  for (int i = 0; i < strlen(buffer); i++) {
+    for (int j = 0; j < strlen(guess); j++) {
+      if (buffer[i] == guess[j] && j == i) {
+        break;
+      }
+      else if (buffer[i] == guess[j]) {
+        buffer[i] = '.';
+        guess[j] = ' ';
+        break;
+      }
     }
     else {
-      //no change
+        buffer[i] = '-';
     }
   }
+
   write(fd, buffer, strlen(buffer));
   close(fd);
-
-
 }
 void guess_function2(){
-  open("guess2.txt", O_WRONLY);
+  int ans = open("answer2.txt", O_RDONLY);
+  char guess[6];
+  for (int i = 0; i < strlen(guess); i++) {
+    guess[i] = toUpper(guess[i]);
+  }
+  read(ans, guess, sizeof(char)*6);
+
+  int fd = open("guess2.txt", O_WRONLY);
+  char buffer[6];
+
+  printf("Enter a five letter guess: ");
+  fgets(buffer, sizeof(buffer), stdin);
+  for (int i = 0; i < strlen(buffer); i++) {
+    buffer[i] = toUpper(buffer[i]);
+  }
+  printf("\n");
+  /*
+  - If same letter in same pos: toUpper
+  - If same letter in wrong pos: set to .
+      - This seems like it would need me to compare each character of buffer against each
+  - If wrong letter: set to -
+  */
+  for (int i = 0; i < strlen(buffer); i++) {
+    for (int j = 0; j < strlen(guess); j++) {
+      if (buffer[i] == guess[j] && j == i) {
+        break;
+      }
+      else if (buffer[i] == guess[j]) {
+        buffer[i] = '.';
+        guess[j] = ' ';
+        break;
+      }
+    }
+    else {
+        buffer[i] = '-';
+    }
+  }
+
+  write(fd, buffer, strlen(buffer));
+  close(fd);
 
 }
