@@ -33,8 +33,11 @@ This document must be updated daily by EACH group member.
 ### 2024-01-13 - Readjusted our initialization idea for the beginning of the game
 - Discussed in great detail how the server/client relationship works and how it would be useful for our wordle game
 - Removed all semaphore stuff in previous draft of the project
-- (40 min)
+- (50 min)
 
+- ### 2024-01-14 - Added crude functions for pipe networking
+- Put in server and client functions for handshake in wordle and header file
+- (40 min)
 
 ## Tanzeem Hasan
 
