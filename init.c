@@ -43,7 +43,6 @@ int main(int argc, char *argv[]) {
     if(n < 0){
       close(to_client);
       to_client = WKPfd;
-      break;
     }
   } else if(strcmp(argv[1], "Player 2") == 0){
     int to_server;
