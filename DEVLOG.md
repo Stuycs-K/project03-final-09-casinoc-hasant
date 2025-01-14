@@ -37,6 +37,7 @@ This document must be updated daily by EACH group member.
 
 - ### 2024-01-14 - Added crude functions for pipe networking
 - Put in server and client functions for handshake in wordle and header file
+- Added multiple argument functionality for main function in init file for Player 1 and Player 2 relating to the server and client
 - (40 min)
 
 ## Tanzeem Hasan
