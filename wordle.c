@@ -149,9 +149,15 @@ void guess_function1(){
       - This seems like it would need me to compare each character of buffer against each
   - If wrong letter: set to -
   */
+  for (int i = 0; i < strlen(guess); i++) {
+    if () {
+
+    }
+  }
   for (int i = 0; i < strlen(buffer); i++) {
     for (int j = 0; j < strlen(guess); j++) {
       if (buffer[i] == guess[j] && j == i) {
+        buffer[i] = toLower(buffer[i]);
         break;
       }
       else if (buffer[i] == guess[j]) {
@@ -160,8 +166,8 @@ void guess_function1(){
         break;
       }
     }
-    else {
-        buffer[i] = '-';
+    if () {
+      buffer[i] = '-';
     }
   }
 
