@@ -25,6 +25,7 @@ static void sighandler(int signo){
 }
 
 int main(int argc, char *argv[]) {
+  printf("got here");
   signal(SIGINT, sighandler);
   signal(SIGPIPE, sighandler);
 

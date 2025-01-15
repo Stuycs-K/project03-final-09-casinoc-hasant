@@ -40,6 +40,10 @@ This document must be updated daily by EACH group member.
 - Added multiple argument functionality for main function in init file for Player 1 and Player 2 relating to the server and client
 - (40 min)
 
+### 2024-01-15 - Discussed how the functions should work conceptually
+- Deleted unecessary variables in init file
+- (20 min (spent a chunk of the period trying to fix lab 11))
+
 ## Tanzeem Hasan
 
 ### 2024-01-06 - Project Proposal
@@ -67,6 +71,13 @@ This document must be updated daily by EACH group member.
 ### 2024-01-13 - Introducing Client-Server Functionality
 - Introducing idea of client-server functionality in project
 - Beginning to implement client-server functionality
+(40 mins)
 
 ### 2024-01-14 - Guess function work
-- Wrote guess function
+- Wrote guess functions 1 and 2 (40 minutes)
+
+### 2024-01-14 - Guess function work
+- Cleaned up errors in compilation
+- Modified guess functions
+- Found new errors in compilation
+(40 mins)
