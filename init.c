@@ -45,8 +45,6 @@ int main(int argc, char *argv[]) {
       to_client = WKPfd;
     }
   } else if(strcmp(argv[1], "Player 2") == 0){
-    int to_server;
-    int from_server;
     from_server = client_handshake( &to_server );
     char recieved_int[100];
     read(from_server, recieved_int, sizeof(recieved_int));
