@@ -170,9 +170,6 @@ void guess_function1(){
   close(fd);
   }
 
-  write(fd, buffer, strlen(buffer));
-  close(fd);
-}
 void guess_function2(){
   int ans = open("answer2.txt", O_RDONLY);
   char guess[6];

@@ -67,6 +67,13 @@ This document must be updated daily by EACH group member.
 ### 2024-01-13 - Introducing Client-Server Functionality
 - Introducing idea of client-server functionality in project
 - Beginning to implement client-server functionality
+(40 mins)
 
 ### 2024-01-14 - Guess function work
-- Wrote guess function
+- Wrote guess functions 1 and 2 (40 minutes)
+
+### 2024-01-14 - Guess function work
+- Cleaned up errors in compilation
+- Modified guess functions
+- Found new errors in compilation
+(40 mins)
