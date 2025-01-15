@@ -40,6 +40,10 @@ This document must be updated daily by EACH group member.
 - Added multiple argument functionality for main function in init file for Player 1 and Player 2 relating to the server and client
 - (40 min)
 
+### 2024-01-15 - Discussed how the functions should work conceptually
+- Deleted unecessary variables in init file
+- (20 min (spent a chunk of the period trying to fix lab 11))
+
 ## Tanzeem Hasan
 
 ### 2024-01-06 - Project Proposal
