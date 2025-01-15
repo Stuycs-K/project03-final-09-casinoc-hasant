@@ -149,11 +149,6 @@ void guess_function1(){
       - This seems like it would need me to compare each character of buffer against each
   - If wrong letter: set to -
   */
-  for (int i = 0; i < strlen(guess); i++) {
-    if (1) {
-      printf("a");
-    }
-  }
   for (int i = 0; i < strlen(buffer); i++) {
     for (int j = 0; j < strlen(guess); j++) {
       if (buffer[i] == guess[j] && j == i) {
@@ -166,23 +161,27 @@ void guess_function1(){
         break;
       }
     }
-    if (1) {
+    if (isupper(buffer[i])) {
       buffer[i] = '-';
     }
   }
 
   write(fd, buffer, strlen(buffer));
   close(fd);
+  }
+
+  write(fd, buffer, strlen(buffer));
+  close(fd);
 }
 void guess_function2(){
-  int ans = open("answer1.txt", O_RDONLY);
+  int ans = open("answer2.txt", O_RDONLY);
   char guess[6];
   for (int i = 0; i < strlen(guess); i++) {
     guess[i] = toupper(guess[i]);
   }
   read(ans, guess, sizeof(char)*6);
 
-  int fd = open("guess1.txt", O_WRONLY);
+  int fd = open("guess2.txt", O_WRONLY);
   char buffer[6];
 
   printf("Enter a five letter guess: ");
@@ -197,11 +196,6 @@ void guess_function2(){
       - This seems like it would need me to compare each character of buffer against each
   - If wrong letter: set to -
   */
-  for (int i = 0; i < strlen(guess); i++) {
-    if (1) {
-      printf("a");
-    }
-  }
   for (int i = 0; i < strlen(buffer); i++) {
     for (int j = 0; j < strlen(guess); j++) {
       if (buffer[i] == guess[j] && j == i) {
@@ -214,7 +208,7 @@ void guess_function2(){
         break;
       }
     }
-    if (1) {
+    if (isupper(buffer[i])) {
       buffer[i] = '-';
     }
   }
