@@ -51,9 +51,9 @@ int main(int argc, char *argv[]) {
       int to_server;
       int from_server;
       from_server = client_handshake( &to_server );
-      char recieved_int[100];
-      read(from_server, recieved_int, sizeof(recieved_int));
-      printf("Received_int %s\n", recieved_int);
+      char received_int[100];
+      read(from_server, received_int, sizeof(received_int));
+      printf("Received_int %s\n", received_int);
     }
     else {
       printf("Please enter either Player_1 or Player_2\n");

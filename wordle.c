@@ -56,9 +56,9 @@ int server_handshake(int *to_client) {
   *to_client = fd;
 
   // Send acknowledgement of connection through Private Pipe.
-  int random = (rand() % 100000);
-  char syn_ack[20];
-  sprintf(syn_ack, "%d", random);
+  char syn_ack[6];
+  printf("Enter a 5 letter word: ");
+  fgets(syn_ack, sizeof(syn_ack), stdin);
   write(fd, syn_ack, sizeof(syn_ack));
 
   // Get second acknowlegdment.
@@ -116,11 +116,9 @@ int client_handshake(int *to_server) {
   printf("syn_ack %s\n", syn_ack);
 
   // Send ack to server on WKP with pid+1.
-  int change_num;
-  sscanf(syn_ack, "%d", &change_num);
-  change_num++;
-  char ack[100];
-  sprintf(ack, "%d", change_num);
+  char ack[6];
+  printf("Enter a five letter word: ");
+  fgets(ack, sizeof(ack), stdin);
   write(fd, ack, sizeof(ack));
 
   from_server = df;
