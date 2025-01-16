@@ -38,22 +38,13 @@ int main(int argc, char *argv[]) {
       to_client = server_setup();
       WKPfd = to_client;
       from_client = server_handshake( &to_client );
-      int random = (rand() % 101);
-      char sent_int[20];
-      sprintf(sent_int, "%d", random);
-      int n = write(to_client, sent_int, sizeof(sent_int));
-      if(n < 0){
-        close(to_client);
-        to_client = WKPfd;
-      }
+      open("answer1.txt", O_RDWR | O_CREAT, 0644);
+      open("guess1.txt", O_RDWR | O_CREAT, 0644);
     }
     else if(strcmp(argv[1], "Player2") == 0){
-      int to_server;
-      int from_server;
       from_server = client_handshake( &to_server );
-      char received_int[100];
-      read(from_server, received_int, sizeof(received_int));
-      printf("Received_int %s\n", received_int);
+      open("answer2.txt", O_RDWR | O_CREAT, 0644);
+      open("guess2.txt", O_RDWR | O_CREAT, 0644);
     }
     else {
       printf("Please enter either Player1 or Player2\n");
