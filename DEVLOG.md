@@ -46,6 +46,11 @@ This document must be updated daily by EACH group member.
 - Deleted unecessary variables in init file
 - (20 min (spent a chunk of the period trying to fix lab 11))
 
+### 2024-01-16 - Added crude functions for pipe networking
+- Finally fixed the server and client connection using the wordle words instead of a random number
+- Created the answer and guess files for each of the players and wrote and read from them during the game
+- (40 min)
+
 ## Tanzeem Hasan
 
 ### 2024-01-06 - Project Proposal
