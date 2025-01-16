@@ -31,6 +31,8 @@ int main(int argc, char *argv[]) {
 
   int to_client; // Private
   int from_client; // WKP
+  int to_server; // WKP
+  int from_server; // Private
   int WKPfd;
 
   if(strcmp(argv[1], "Player 1") == 0){
