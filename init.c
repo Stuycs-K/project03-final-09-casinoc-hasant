@@ -71,7 +71,5 @@ int main(int argc, char *argv[]) {
   else {
     printf("Please give an argument\n");
   }
-
-
   return 0;
 }
