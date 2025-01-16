@@ -34,7 +34,8 @@ int main(int argc, char *argv[]) {
   int from_server; // Private
   int WKPfd;
   if (argc > 1) {
-    if(strcmp(argv[1], "Player 1") == 0){
+    printf("%s", argv[1]);
+    if(strcmp(argv[1], "Player_1") == 0){
       to_client = server_setup();
       WKPfd = to_client;
       from_client = server_handshake( &to_client );
@@ -47,16 +48,16 @@ int main(int argc, char *argv[]) {
         to_client = WKPfd;
       }
     }
-    else if(strcmp(argv[1], "Player 2") == 0){
+    else if(strcmp(argv[1], "Player_2") == 0){
       int to_server;
       int from_server;
       from_server = client_handshake( &to_server );
       char recieved_int[100];
       read(from_server, recieved_int, sizeof(recieved_int));
-      printf("recieved_int %s\n", recieved_int);
+      printf("Received_int %s\n", recieved_int);
     }
     else {
-      printf("Please enter either Player 1 or Player 2\n");
+      printf("Please enter either Player_1 or Player_2\n");
       return 1;
     }
   } else if(strcmp(argv[1], "Player 2") == 0){
