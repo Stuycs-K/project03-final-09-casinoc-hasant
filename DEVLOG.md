@@ -83,3 +83,9 @@ This document must be updated daily by EACH group member.
 - Modified guess functions
 - Found new errors in compilation
 (40 mins)
+
+### 2024-01-16 - Client, server work
+- Resolved segmentation fault
+- Modified user input
+- Verified client server handshake with words to guess
+(40 mins)
