@@ -12,6 +12,7 @@
 #include <sys/shm.h>
 #include <sys/ipc.h>
 #include <ctype.h>
+#include <time.h>
 #include "wordle.h"
 
 int server_setup() {
