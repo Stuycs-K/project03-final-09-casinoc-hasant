@@ -38,13 +38,14 @@ int main(int argc, char *argv[]) {
       to_client = server_setup();
       WKPfd = to_client;
       from_client = server_handshake( &to_client );
-      open("answer1.txt", O_RDWR | O_CREAT, 0644);
-      open("guess1.txt", O_RDWR | O_CREAT, 0644);
+      //open("answer1.txt", O_RDWR | O_CREAT, 0644);
+      //open("guess1.txt", O_RDWR | O_CREAT, 0644);
+      
     }
     else if(strcmp(argv[1], "Player2") == 0){
       from_server = client_handshake( &to_server );
-      open("answer2.txt", O_RDWR | O_CREAT, 0644);
-      open("guess2.txt", O_RDWR | O_CREAT, 0644);
+      //open("answer2.txt", O_RDWR | O_CREAT, 0644);
+      //open("guess2.txt", O_RDWR | O_CREAT, 0644);
     }
     else {
       printf("Please enter either Player1 or Player2\n");
