@@ -143,26 +143,30 @@ int client_handshake(int *to_server) {
   return from_server;
 }
 
-char* guess_function3(char* guess){
-  char buffer[5] = "tests";
+char* wordle_function(char* guess){
+  char answer[5] = "TESTS";
+  char* result = (char*)malloc(6 * sizeof(char));
+  for(int i = 0; i < 5; i++){
+    guess[i] = toupper(guess[i]);
+  }
 
-  for (int i = 0; i < strlen(buffer); i++) {
-    for (int j = 0; j < strlen(guess); j++) {
-      if (buffer[i] == guess[j] && j == i) {
-        buffer[i] = tolower(buffer[i]);
-        break;
-      }
-      else if (buffer[i] == guess[j]) {
-        buffer[i] = '.';
-        guess[j] = ' ';
-        break;
-      }
-    }
-    if (isupper(buffer[i])) {
-      buffer[i] = '-';
+  // Check if letter is present in answer.
+  for(int i = 0; i < 5; i++){
+    if(strchr(answer, guess[i]) != NULL){
+      result[i] = tolower(guess[i]);
+    } else {
+      result[i] = '-';
     }
   }
-  return buffer;
+
+  // Check if letter is in the correct place.
+  for(int i = 0; i < 5; i++){
+    if(answer[i] == guess[i]){
+      result[i] = toupper(guess[i]);
+    }
+  }
+
+  return result;
 }
 
 void guess_function1(){
