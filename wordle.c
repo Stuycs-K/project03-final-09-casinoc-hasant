@@ -41,7 +41,6 @@ int server_handshake(int *to_client) {
   char private[100];
   int private_pipe_PID;
   read(*to_client, private, sizeof(private));
-  printf("syn %s\n", private);
   sscanf(private, "%d", &private_pipe_PID);
 
   // Open Private Pipe to client.
@@ -56,9 +55,16 @@ int server_handshake(int *to_client) {
   *to_client = fd;
 
   // Send acknowledgement of connection through Private Pipe.
-  char syn_ack[6];
+  char answer[6];
   printf("Enter a 5 letter word: ");
-  fgets(syn_ack, sizeof(syn_ack), stdin);
+  fgets(answer, sizeof(answer), stdin);
+  for (int i = 0; i < strlen(answer); i++) {
+    answer[i] = toupper(answer[i]);
+  }
+  //write(fd, syn_ack, sizeof(syn_ack));
+  int random = (rand() % 100000);
+  char syn_ack[20];
+  sprintf(syn_ack, "%d", random);
   write(fd, syn_ack, sizeof(syn_ack));
 
   // Get second acknowlegdment.
@@ -116,9 +122,18 @@ int client_handshake(int *to_server) {
   printf("syn_ack %s\n", syn_ack);
 
   // Send ack to server on WKP with pid+1.
-  char ack[6];
+  char answer[6];
   printf("Enter a five letter word: ");
-  fgets(ack, sizeof(ack), stdin);
+  fgets(answer, sizeof(answer), stdin);
+  for (int i = 0; i < strlen(answer); i++) {
+    answer[i] = toupper(answer[i]);
+  }
+  //write(fd, ack, sizeof(ack));
+  int change_num;
+  sscanf(syn_ack, "%d", &change_num);
+  change_num++;
+  char ack[100];
+  sprintf(ack, "%d", change_num);
   write(fd, ack, sizeof(ack));
 
   from_server = df;
