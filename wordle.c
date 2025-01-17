@@ -15,6 +15,9 @@
 #include <time.h>
 #include "wordle.h"
 
+char answer1[5];
+char answer2[5];
+
 int server_setup() {
   int from_client = 0;
   char path[] = "/tmp/mario";
@@ -55,12 +58,13 @@ int server_handshake(int *to_client) {
   *to_client = fd;
 
   // Send acknowledgement of connection through Private Pipe.
-  char answer[6];
   printf("Enter a 5 letter word: ");
-  fgets(answer, sizeof(answer), stdin);
-  for (int i = 0; i < strlen(answer); i++) {
-    answer[i] = toupper(answer[i]);
+  fgets(answer1, sizeof(answer1), stdin);
+  for (int i = 0; i < strlen(answer1); i++) {
+    answer1[i] = toupper(answer1[i]);
   }
+
+
   //write(fd, syn_ack, sizeof(syn_ack));
   int random = (rand() % 100000);
   char syn_ack[20];
@@ -122,11 +126,10 @@ int client_handshake(int *to_server) {
   printf("syn_ack %s\n", syn_ack);
 
   // Send ack to server on WKP with pid+1.
-  char answer[6];
   printf("Enter a five letter word: ");
-  fgets(answer, sizeof(answer), stdin);
-  for (int i = 0; i < strlen(answer); i++) {
-    answer[i] = toupper(answer[i]);
+  fgets(answer2, sizeof(answer2), stdin);
+  for (int i = 0; i < strlen(answer2); i++) {
+    answer2[i] = toupper(answer2[i]);
   }
   //write(fd, ack, sizeof(ack));
   int change_num;
@@ -138,6 +141,28 @@ int client_handshake(int *to_server) {
 
   from_server = df;
   return from_server;
+}
+
+char* guess_function3(char* guess){
+  char buffer[5] = "tests";
+
+  for (int i = 0; i < strlen(buffer); i++) {
+    for (int j = 0; j < strlen(guess); j++) {
+      if (buffer[i] == guess[j] && j == i) {
+        buffer[i] = tolower(buffer[i]);
+        break;
+      }
+      else if (buffer[i] == guess[j]) {
+        buffer[i] = '.';
+        guess[j] = ' ';
+        break;
+      }
+    }
+    if (isupper(buffer[i])) {
+      buffer[i] = '-';
+    }
+  }
+  return buffer;
 }
 
 void guess_function1(){
