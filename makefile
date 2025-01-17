@@ -10,4 +10,3 @@ init: initme
 clean:
 	rm *.o
 	rm initme
-	rm *.txt
