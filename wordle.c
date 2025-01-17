@@ -58,14 +58,6 @@ int server_handshake(int *to_client) {
   *to_client = fd;
 
   // Send acknowledgement of connection through Private Pipe.
-  printf("Enter a 5 letter word: ");
-  fgets(answer1, sizeof(answer1), stdin);
-  for (int i = 0; i < strlen(answer1); i++) {
-    answer1[i] = toupper(answer1[i]);
-  }
-
-
-  //write(fd, syn_ack, sizeof(syn_ack));
   int random = (rand() % 100000);
   char syn_ack[20];
   sprintf(syn_ack, "%d", random);
@@ -126,12 +118,6 @@ int client_handshake(int *to_server) {
   printf("syn_ack %s\n", syn_ack);
 
   // Send ack to server on WKP with pid+1.
-  printf("Enter a five letter word: ");
-  fgets(answer2, sizeof(answer2), stdin);
-  for (int i = 0; i < strlen(answer2); i++) {
-    answer2[i] = toupper(answer2[i]);
-  }
-  //write(fd, ack, sizeof(ack));
   int change_num;
   sscanf(syn_ack, "%d", &change_num);
   change_num++;
@@ -145,7 +131,7 @@ int client_handshake(int *to_server) {
 
 char* wordle_function(char* guess){
   char answer[5] = "TESTS";
-  char* result = (char*)malloc(6 * sizeof(char));
+  char* result = (char*)malloc(5 * sizeof(char));
   for(int i = 0; i < 5; i++){
     guess[i] = toupper(guess[i]);
   }
