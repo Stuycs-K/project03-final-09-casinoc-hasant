@@ -6,6 +6,7 @@
 #include <string.h>
 #include <signal.h>
 #include <errno.h>
+#include <ctype.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/sem.h>
