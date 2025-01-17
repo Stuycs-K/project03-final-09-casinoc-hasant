@@ -46,10 +46,15 @@ This document must be updated daily by EACH group member.
 - Deleted unecessary variables in init file
 - (20 min (spent a chunk of the period trying to fix lab 11))
 
-### 2024-01-16 - Added crude functions for pipe networking
+### 2024-01-16 - Revised how the pipes are used for the game
 - Finally fixed the server and client connection using the wordle words instead of a random number
 - Created the answer and guess files for each of the players and wrote and read from them during the game
 - (40 min)
+- Revised handshake to be just normal and not using the answer as part of the communication
+- Added the wordle game processing function but not fully done for each part of the game
+- Used pipe communication as the guessing process instead of having the guesses be written to a text file
+- Keeps answer word to the same server/client instead of communicating it to the other person
+- (2 hours)
 
 ## Tanzeem Hasan
 
