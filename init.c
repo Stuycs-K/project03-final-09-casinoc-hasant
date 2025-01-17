@@ -55,6 +55,22 @@ int main(int argc, char *argv[]) {
   }
   else {
     printf("Please give an argument\n");
+    char guess[256];
+    char * returning;
+
+    for(int i = 1; i <= 6; i++){
+        printf("Enter guess: ");
+        fgets(guess, sizeof(guess), stdin);
+        returning = wordle_function(guess);
+        printf("returned: %s\n", returning);
+        if(strcmp(returning, "TESTS") == 0){
+          printf("You won in %d guesses!\n", i);
+          free(returning);
+          return 0;
+        }
+    }
+    printf("Game over, you are out guesses.\n");
+    free(returning);
   }
   return 0;
 }
