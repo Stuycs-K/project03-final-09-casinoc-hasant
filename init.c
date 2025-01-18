@@ -42,38 +42,25 @@ int main(int argc, char *argv[]) {
       from_client = server_handshake( &to_client );
 
       char guess[7]; // Needs to be size 7 because of new line and null byte characters.
-      char * returning;
+      char * hint;
 
       for(int i = 1; i <= 6; i++){
-        write(to_client, "Enter guess: \n", 15); // Sent on private pipe to client.
+        write(to_client, "Enter guess: ", 15); // Sent on private pipe to client.
         read(from_client, guess, sizeof(guess)); // Read guess from WKP.
-        printf("guess: %s\n", guess);
-        returning = wordle_function(guess);
-        if(strcmp(returning, "TESTS") == 0){
+        printf("guess: %s", guess);
+        hint = wordle_function(guess);
+        if(strcmp(hint, "TESTS") == 0){
           char win[100];
           sprintf(win, "You won in %d guesses!\n", i);
           write(to_client, win, sizeof(win));
-          free(returning);
+          free(hint);
           return 0;
         }
-        write(to_client, returning, sizeof(returning)); // Sent on private pipe to client
+        write(to_client, hint, sizeof(hint)); // Sent on private pipe to client
         sleep(1);
       }
-      printf("Game over, you are out guesses.\n");
-      free(returning);
-
-      /* while(1){
-        int random = (rand() % 101);
-        char sent_int[20];
-        sprintf(sent_int, "%d", random);
-        int n = write(to_client, sent_int, sizeof(sent_int));
-        if(n < 0){
-          close(to_client);
-          to_client = WKPfd;
-          break;
-        }
-        sleep(1);
-      } */
+      write(to_client, "Game over, you are out of guesses.\n", 35);
+      free(hint);
     }
     else if(strcmp(argv[1], "Player2") == 0){
       char guess[7]; // Needs to be size 7 because of new line and null byte characters.
@@ -83,12 +70,15 @@ int main(int argc, char *argv[]) {
       while(1){
         char prompt[100];
         read(from_server, prompt, sizeof(prompt));
-        printf("%s\n", prompt);
+        printf("%s", prompt);
+        if(strstr(prompt, "Game over") != 0){
+          exit(0);
+        }
         fgets(guess, sizeof(guess), stdin);
         write(to_server, guess, sizeof(guess));
         char hint[100];
         read(from_server, hint, sizeof(hint));
-        printf("%s\n", hint);
+        printf("hint: %s\n", hint);
         if(strstr(hint, "You won") != 0){
           break;
         }
@@ -102,23 +92,6 @@ int main(int argc, char *argv[]) {
   }
   else {
     printf("Please give an argument\n");
-    char guess[7];//Needs to be size 7 because of new line and null byte characters.
-    char * returning;
-
-    for(int i = 1; i <= 6; i++){
-        printf("Enter guess: \n");
-        fgets(guess, sizeof(guess), stdin);
-        returning = wordle_function(guess);
-        printf("returned: %s\n", returning);
-        if(strcmp(returning, "TESTS") == 0){
-          printf("You won in %d guesses!\n", i);
-          free(returning);
-          return 0;
-        }
-    }
-    printf("Game over, you are out guesses.\n");
-    free(returning);
-
   }
   return 0;
 }
