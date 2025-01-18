@@ -45,15 +45,19 @@ int main(int argc, char *argv[]) {
       char * returning;
 
       for(int i = 1; i <= 6; i++){
-          printf("Enter guess: \n");
-          fgets(guess, sizeof(guess), stdin);
-          returning = wordle_function(guess);
-          printf("returned: %s\n", returning);
-          if(strcmp(returning, "TESTS") == 0){
-            printf("You won in %d guesses!\n", i);
-            free(returning);
-            return 0;
-          }
+        write(to_client, "Enter guess: \n", 15); // Sent on private pipe to client.
+        read(from_client, guess, sizeof(guess)); // Read guess from WKP.
+        printf("guess: %s\n", guess);
+        returning = wordle_function(guess);
+        if(strcmp(returning, "TESTS") == 0){
+          char win[100];
+          sprintf(win, "You won in %d guesses!\n", i);
+          write(to_client, win, sizeof(win));
+          free(returning);
+          return 0;
+        }
+        write(to_client, returning, sizeof(returning)); // Sent on private pipe to client
+        sleep(1);
       }
       printf("Game over, you are out guesses.\n");
       free(returning);
@@ -72,15 +76,24 @@ int main(int argc, char *argv[]) {
       } */
     }
     else if(strcmp(argv[1], "Player2") == 0){
+      char guess[7]; // Needs to be size 7 because of new line and null byte characters.
+      
       from_server = client_handshake( &to_server );
 
-      
-      /* while(1){
-        char recieved_int[100];
-        read(from_server, recieved_int, sizeof(recieved_int));
-        printf("recieved_int %s\n", recieved_int);
+      while(1){
+        char prompt[100];
+        read(from_server, prompt, sizeof(prompt));
+        printf("%s\n", prompt);
+        fgets(guess, sizeof(guess), stdin);
+        write(to_server, guess, sizeof(guess));
+        char hint[100];
+        read(from_server, hint, sizeof(hint));
+        printf("%s\n", hint);
+        if(strstr(hint, "You won") != 0){
+          break;
+        }
         sleep(1);
-      } */
+      }
     }
     else {
       printf("Please enter either Player1 or Player2\n");
