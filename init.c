@@ -41,6 +41,10 @@ int main(int argc, char *argv[]) {
       WKPfd = to_client;
       from_client = server_handshake( &to_client );
 
+      printf("Enter answer for other player: ");
+      char answer[7]; // Needs to be size 7 because of new line and null byte characters.
+      fgets(answer, sizeof(answer), stdin);
+
       char guess[7]; // Needs to be size 7 because of new line and null byte characters.
       char * hint;
 
@@ -48,8 +52,10 @@ int main(int argc, char *argv[]) {
         write(to_client, "Enter guess: ", 15); // Sent on private pipe to client.
         read(from_client, guess, sizeof(guess)); // Read guess from WKP.
         printf("guess: %s", guess);
-        hint = wordle_function(guess);
-        if(strcmp(hint, "TESTS") == 0){
+        hint = wordle_function(guess, answer);
+        hint[5] = '\0';
+        answer[5] = '\0';
+        if(strcmp(hint, answer) == 0){
           char win[100];
           sprintf(win, "You won in %d guesses!\n", i);
           write(to_client, win, sizeof(win));
