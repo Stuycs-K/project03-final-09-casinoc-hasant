@@ -128,8 +128,7 @@ int client_handshake(int *to_server) {
   return from_server;
 }
 
-char* wordle_function(char* guess){
-  char answer[5] = "TESTS";
+char* wordle_function(char* guess, char* answer){
   char* result = (char*)malloc(5 * sizeof(char));
   for(int i = 0; i < 5; i++){
     guess[i] = toupper(guess[i]);
