@@ -18,6 +18,8 @@ static void sighandler(int signo){
   if(signo == SIGINT){
     char path[] = "/tmp/mario";
     remove(path);
+    char path2[] = "/tmp/luigi";
+    remove(path2);
     exit(0);
   }
   if(signo == SIGPIPE){
@@ -35,11 +37,11 @@ int main(int argc, char *argv[]) {
   int to_server; // WKP
   int from_server; // Private
   int WKPfd;
-  if (argc > 1) {
-    if(strcmp(argv[1], "Player1") == 0){
-      to_client = server_setup();
+  if (argc > 2) {
+    if(strcmp(argv[1], "Answer") == 0){
+      to_client = server_setup(argv[2]);
       WKPfd = to_client;
-      from_client = server_handshake( &to_client );
+      from_client = server_handshake(&to_client, argv[2]);
 
       printf("Enter answer for other player: ");
       char answer[7]; // Needs to be size 7 because of new line and null byte characters.
@@ -57,7 +59,11 @@ int main(int argc, char *argv[]) {
         answer[5] = '\0';
         if(strcmp(hint, answer) == 0){
           char win[100];
-          sprintf(win, "You won in %d guesses!\n", i);
+          if(i == 1){
+            sprintf(win, "You won in %d guess!\n", i);
+          } else {
+            sprintf(win, "You won in %d guesses!\n", i);
+          }
           write(to_client, win, sizeof(win));
           free(hint);
           return 0;
@@ -68,10 +74,10 @@ int main(int argc, char *argv[]) {
       write(to_client, "Game over, you are out of guesses.\n", 35);
       free(hint);
     }
-    else if(strcmp(argv[1], "Player2") == 0){
+    else if(strcmp(argv[1], "Guess") == 0){
       char guess[7]; // Needs to be size 7 because of new line and null byte characters.
       
-      from_server = client_handshake( &to_server );
+      from_server = client_handshake(&to_server, argv[2]);
 
       while(1){
         char prompt[100];
@@ -92,12 +98,12 @@ int main(int argc, char *argv[]) {
       }
     }
     else {
-      printf("Please enter either Player1 or Player2\n");
+      printf("Please enter either Answer Player1/Player2 or Guess Player1/Player2\n");
       return 1;
     }
   }
   else {
-    printf("Please give an argument\n");
+    printf("Please give the proper arguments\n");
   }
   return 0;
 }
