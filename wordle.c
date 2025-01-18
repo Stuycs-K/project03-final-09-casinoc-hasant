@@ -141,34 +141,33 @@ int * letter_counter(char * word){
 
 char* wordle_function(char* guess, char* answer){
   char* result = (char*)malloc(5 * sizeof(char));
+  int* counter = (int*)malloc(26 * sizeof(int));
+  counter = letter_counter(answer);
   for(int i = 0; i < 5; i++){
     guess[i] = toupper(guess[i]);
   }
   for(int i = 0; i < 5; i++){
     answer[i] = toupper(answer[i]);
   }
-
-  // Check if letter is present in answer.
   for(int i = 0; i < 5; i++){
-    if(strchr(answer, guess[i]) != NULL){
-      result[i] = tolower(guess[i]);
-    } else {
-      result[i] = '-';
-    }
+    result[i] = '-';
   }
 
   // Check if letter is in the correct place.
   for(int i = 0; i < 5; i++){
     if(answer[i] == guess[i]){
       result[i] = toupper(guess[i]);
+      counter[guess[i] - 65]--;
     }
   }
 
-  // If you guess the same letter twice, but the answer 
-  // only has 1 of that letter, show one possible and one wrong.
+  // Check if letter is present in answer but is not in the right place.
+  for(int i = 0; i < 5; i++){
+    if((counter[guess[i] - 65] > 0) && (result[i] == '-') && (strchr(answer, guess[i]) != NULL)){
+      result[i] = tolower(guess[i]);
+      counter[guess[i] - 65]--;
+    }
+  }
   
-
-  
-
   return result;
 }
