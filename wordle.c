@@ -39,7 +39,7 @@ int server_setup(char * player) {
   return from_client;
 }
 
-int server_handshake(int *to_client) {
+int server_handshake(int *to_client, char * player) {
   int from_client;
   srand(time(NULL));
 
@@ -69,6 +69,9 @@ int server_handshake(int *to_client) {
   // Get second acknowlegdment.
   char ack[100];
   char path[] = "/tmp/mario";
+  if(strcmp(player, "Player2") == 0){
+    strcpy(path, "/tmp/luigi");
+  }
   int df = open(path, O_RDONLY);
   if(df == -1) {
     printf("%s\n",strerror(errno));
