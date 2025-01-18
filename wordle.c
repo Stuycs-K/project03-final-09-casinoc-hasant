@@ -18,9 +18,12 @@
 char answer1[5];
 char answer2[5];
 
-int server_setup() {
+int server_setup(char * player) {
   int from_client = 0;
   char path[] = "/tmp/mario";
+  if(strcmp(player, "Player2") == 0){
+    strcpy(path, "/tmp/luigi");
+  }
   remove(path);
   int n = mkfifo(path, 0777);
   if(n == -1) {
@@ -77,9 +80,13 @@ int server_handshake(int *to_client) {
   return from_client;
 }
 
-int client_handshake(int *to_server) {
+int client_handshake(int *to_server, char * player) {
   int from_server;
   char WKP_path[] = "/tmp/mario";
+  if(strcmp(player, "Player1") == 0){
+    strcpy(WKP_path, "/tmp/luigi");
+  }
+
 
   // Open Well Known Pipe to server.
   int fd = open(WKP_path, O_WRONLY);
