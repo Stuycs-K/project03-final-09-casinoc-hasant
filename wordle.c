@@ -125,6 +125,7 @@ int client_handshake(int *to_server) {
   sprintf(ack, "%d", change_num);
   write(fd, ack, sizeof(ack));
 
+  *to_server = fd;
   from_server = df;
   return from_server;
 }
