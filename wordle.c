@@ -128,6 +128,17 @@ int client_handshake(int *to_server) {
   return from_server;
 }
 
+int * letter_counter(char * word){
+  int* counter = (int*)malloc(26 * sizeof(int));
+  for(int i = 0; i < 5; i++){
+    word[i] = toupper(word[i]);
+  }
+  for(int i = 0; i < 5; i++){
+    counter[word[i]-65]++;
+  }
+  return counter;
+}
+
 char* wordle_function(char* guess, char* answer){
   char* result = (char*)malloc(5 * sizeof(char));
   for(int i = 0; i < 5; i++){
@@ -152,5 +163,12 @@ char* wordle_function(char* guess, char* answer){
       result[i] = toupper(guess[i]);
     }
   }
+
+  // If you guess the same letter twice, but the answer 
+  // only has 1 of that letter, show one possible and one wrong.
+  
+
+  
+
   return result;
 }
