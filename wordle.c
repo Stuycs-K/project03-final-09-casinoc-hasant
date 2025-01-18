@@ -72,7 +72,6 @@ int server_handshake(int *to_client) {
     exit(1);
   }
   read(df, ack, sizeof(ack));
-  printf("ack %s\n", ack);
 
   from_client = df;
   return from_client;
@@ -115,7 +114,6 @@ int client_handshake(int *to_server) {
   remove(private_path);
   char syn_ack[100];
   read(df, syn_ack, sizeof(syn_ack));
-  printf("syn_ack %s\n", syn_ack);
 
   // Send ack to server on WKP with pid+1.
   int change_num;
