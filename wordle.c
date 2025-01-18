@@ -133,6 +133,9 @@ char* wordle_function(char* guess, char* answer){
   for(int i = 0; i < 5; i++){
     guess[i] = toupper(guess[i]);
   }
+  for(int i = 0; i < 5; i++){
+    answer[i] = toupper(answer[i]);
+  }
 
   // Check if letter is present in answer.
   for(int i = 0; i < 5; i++){
@@ -149,6 +152,5 @@ char* wordle_function(char* guess, char* answer){
       result[i] = toupper(guess[i]);
     }
   }
-
   return result;
 }
