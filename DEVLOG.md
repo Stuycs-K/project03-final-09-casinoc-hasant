@@ -99,3 +99,6 @@ This document must be updated daily by EACH group member.
 - Modified user input
 - Verified client server handshake with words to guess
 (40 mins)
+
+### 2024-01-19 - Added Cowsay Functionality
+- Added cowsay functionality for guesser

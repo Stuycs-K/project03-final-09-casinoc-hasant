@@ -27,6 +27,22 @@ static void sighandler(int signo){
   }
 }
 
+int cowsay(char hint[], char * message) {
+  char *args[] = {"cowsay", message, hint, NULL};
+  pid_t pid = fork(); //Child process will cowsay
+  if (pid == -1) {
+    perror("Fork failed");
+    exit(1);
+  }
+  else if (pid == 0) {
+    execvp("cowsay", args);
+    return 0;
+  }
+  else {
+    return 1;
+  }
+}
+
 int main(int argc, char *argv[]) {
   signal(SIGINT, sighandler);
   signal(SIGPIPE, sighandler);
@@ -68,6 +84,7 @@ int main(int argc, char *argv[]) {
           free(hint);
           return 0;
         }
+        //Place where cowsay initially went
         write(to_client, hint, sizeof(hint)); // Sent on private pipe to client
         sleep(1);
       }
@@ -90,10 +107,12 @@ int main(int argc, char *argv[]) {
         write(to_server, guess, sizeof(guess));
         char hint[100];
         read(from_server, hint, sizeof(hint));
-        printf("hint: %s\n", hint);
+        
         if(strstr(hint, "You won") != 0){
+          cowsay(hint, "Victory: ");
           break;
         }
+        cowsay(hint, "Hint: ");
         sleep(1);
       }
     }

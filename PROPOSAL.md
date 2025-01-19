@@ -9,8 +9,9 @@ Christopher Casino and Tanzeem Hasan
 The purpose of this program is to replicate the game wordle.
 
 # Intended usage:
+Each player should run the answer and guess commands with make init. So player 1 will run "make init ARGS="Answer Player1"" followed by "make init ARGS="Guess Player1". Player2 will run "make init ARGS="Answer Player2"" followed by "make init ARGS="Guess Player2". Four terminals are required for both players to play simultaneously. A player can only send the word to another player if that other player has opened their guess terminal.
 
-Both players will send each other a word. Each player plays simultaneously. Each player attempts to guess the target word within six attempts. The program will return a modified version of the player's string. If a letter is correct and is in the right position, it will be unmodified. If a letter is correct and in the wrong position, it will be replaced with a ".". If a letter is incorrect it will be replaced with a "-". If a player guesses the word correctly, the game ends.
+Both players will send each other a word. Each player plays simultaneously. Each player attempts to guess the target word within six attempts. The program will return a modified version of the player's string. If a letter is correct and is in the right position, it will be capitalized. If a letter is correct and in the wrong position, it will be unmodified. If a letter is incorrect it will be replaced with a "-". If a player guesses the word correctly, the game ends, and they will be told how many guesses they succeeded within. Each guess that a player makes will be sent to the other player's answer terminal.
 
 # Technical Details:
 
