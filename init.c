@@ -99,17 +99,20 @@ int main(int argc, char *argv[]) {
       while(1){
         char prompt[100];
         read(from_server, prompt, sizeof(prompt));
-        printf("%s", prompt);
+        
         if(strstr(prompt, "Game over") != 0){
+          cowsay(prompt, "-d");
           exit(0);
         }
+        printf("%s", prompt);
         fgets(guess, sizeof(guess), stdin);
         write(to_server, guess, sizeof(guess));
         char hint[100];
         read(from_server, hint, sizeof(hint));
         
         if(strstr(hint, "You won") != 0){
-          cowsay(hint, "Victory: ");
+          char * message = "-fdragon";
+          cowsay(hint, message);
           break;
         }
         cowsay(hint, "Hint: ");

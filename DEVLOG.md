@@ -101,4 +101,7 @@ This document must be updated daily by EACH group member.
 (40 mins)
 
 ### 2024-01-19 - Added Cowsay Functionality
-- Added cowsay functionality for guesser
+- Added cowsay functionality for guesser (100 mins)
+
+### 2024-01-19 - Added Cowsay Functionality
+- Added cowsay dragon, knocked out cow options for guesser (30 mins)
