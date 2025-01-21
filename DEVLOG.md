@@ -103,5 +103,6 @@ This document must be updated daily by EACH group member.
 ### 2024-01-19 - Added Cowsay Functionality
 - Added cowsay functionality for guesser (100 mins)
 
-### 2024-01-19 - Added Cowsay Functionality
+### 2024-01-20 - Added Cowsay Functionality
 - Added cowsay dragon, knocked out cow options for guesser (30 mins)
+- Added exit, quit commands for signaling (30 mins)

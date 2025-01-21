@@ -74,6 +74,7 @@ int main(int argc, char *argv[]) {
         hint[5] = '\0';
         answer[5] = '\0';
         if(strcmp(hint, answer) == 0){
+          
           char win[100];
           if(i == 1){
             sprintf(win, "You won in %d guess!\n", i);
@@ -85,7 +86,13 @@ int main(int argc, char *argv[]) {
           return 0;
         }
         //Place where cowsay initially went
-        write(to_client, hint, sizeof(hint)); // Sent on private pipe to client
+        write(to_client, hint, strlen(hint)+1); // Sent on private pipe to client
+        //exit signal
+        if (strcmp(guess, "EXIT\n") == 0 || strcmp(guess, "QUIT\n") == 0) {
+          printf("Exiting the program...\n");
+          kill(getpid(), SIGINT); // Send SIGINT signal to terminate the program
+        }
+        //
         sleep(1);
       }
       write(to_client, "Game over, you are out of guesses.\n", 35);
@@ -99,7 +106,6 @@ int main(int argc, char *argv[]) {
       while(1){
         char prompt[100];
         read(from_server, prompt, sizeof(prompt));
-        
         if(strstr(prompt, "Game over") != 0){
           cowsay(prompt, "-d");
           exit(0);
@@ -109,7 +115,13 @@ int main(int argc, char *argv[]) {
         write(to_server, guess, sizeof(guess));
         char hint[100];
         read(from_server, hint, sizeof(hint));
-        
+        //exit signal
+        if (strcmp(guess, "exit\n") == 0 || strcmp(guess, "quit\n") == 0) {
+          printf("Exiting the program...\n");
+          kill(getpid(), SIGINT); // Send SIGINT signal to terminate the program
+        }
+
+        //
         if(strstr(hint, "You won") != 0){
           char * message = "-fdragon";
           cowsay(hint, message);
