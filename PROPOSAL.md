@@ -2,14 +2,14 @@
 
 ## Group Members:
 
-Christopher Casino and Tanzeem Hasan
+Christophe Casino and Tanzeem Hasan
 
 # Intentions:
 
-The purpose of this program is to replicate the game wordle.
+The purpose of this program is to create a two player wordle game.
 
 # Intended usage:
-Each player should run the answer and guess commands with make init. So player 1 will run "make init ARGS="Answer Player1"" followed by "make init ARGS="Guess Player1". Player2 will run "make init ARGS="Answer Player2"" followed by "make init ARGS="Guess Player2". Four terminals are required for both players to play simultaneously. A player can only send the word to another player if that other player has opened their guess terminal.
+Each player should run the answer and guess commands with make init. So player 1 will run "make init ARGS="Answer Player1"" followed by "make init ARGS="Guess Player1". Player2 will run "make init ARGS="Answer Player2"" followed by "make init ARGS="Guess Player2". Four terminals are required for both players to play simultaneously. A player can only send the word to another player if that other player has opened their guess terminal. If a player has typed "exit" or "quit" on their guess terminal, their game will be terminated early. 
 
 Both players will send each other a word. Each player plays simultaneously. Each player attempts to guess the target word within six attempts. The program will return a modified version of the player's string. If a letter is correct and is in the right position, it will be capitalized. If a letter is correct and in the wrong position, it will be unmodified. If a letter is incorrect it will be replaced with a "-". If a player guesses the word correctly, the game ends, and they will be told how many guesses they succeeded within. Each guess that a player makes will be sent to the other player's answer terminal.
 
@@ -17,24 +17,21 @@ Both players will send each other a word. Each player plays simultaneously. Each
 
 Topics covered:
 - Allocating memory
-- Working with files
 - Signals
-- Shared memory
-- Semaphores
-By using shared memory and semaphores, we can have a two player wordle game. Both players will create a word that is written to a different file. The players will then swap files and try to guess each others' words.
-Each player will be asked to make a guess through the terminal. The user input will be read into a character array and returned as a modified string depending on how well it matches the given word. If a character from the user's input is present in the array corresponding to the text file, the program will set the character in the text array to null. If a player guesses correctly, a message will be sent to declare their victory and a signal will be output to end the program. If a player uses all six guesses, the program ends.
+- Processes
+- Pipes
+We will be implementing a client-server design, with the answer terminal functioning as the server and the guess terminal functioning as the client.
+The server will be waiting for a client to connect. Upon connecting, the answer giver will be asked for a five letter word. That five letter word will be sent through the pipe to the client, the guesser. Every time the client makes a guess, it will be shown to the answer giver through a pipe. Additionally, the client will fork to create a child process, allowing it to run cowsay with execvp. The cowsay message will contain the modified string, which previously had memory allocated to contain it. Should a player decide they want to quit the game early, they can type "exit" or "quit" to send a SIGINT to both the server and client in a pair, ending that specific game. As two games would be run at the same time, ending one game will not affect the other.
 
 How you are breaking down the project and who is responsible for which parts.
-1. Semaphores and memory segments (make init)
-2. File access and allocating memory (make game ARGS="answer", make game ARGS="guess")
-3. Returning signals
-We will be working on these steps from the perspective of a guesser and an answerer. Tanzeem will write from the perspective of the guesser, and Christopher from the perspective of the answerer.
+1. Signals and Processes (Tanzeem Hasan)
+2. Client-Server Implementation (Christophe Casino)
+3. Wordle Function (Both)
 
-We'll use semaphores to manage access to the game for two players. Semaphores require the union and sembuf structures to function. To manage user input and output, we will store guesses and the target in an array.
 
 
 # Intended pacing:
 By January 7 we intend to have a fully fleshed out concept.
-By the end of January 10, we intend to have a working semaphores and shared memory segments.
-By the end of January 17, we expect to have completed the make answer and make guess functionalities of the project.
+By the end of January 10, we intend to have a working wordle function.
+By the end of January 17, we expect to have the pipes section of our project.
 Over the weekend, we would work on a video presentation.
