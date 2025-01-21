@@ -15,3 +15,7 @@ The player attempts to guess the target word within six attempts. The program wi
 
 How does the user install/compile/run the program.
 First run "make compile". Then both players run "make init" to write a five letter word to a file for the other person to guess. Once both players have submitted their word, then both players will start playing.
+
+### Video Link:
+
+https://drive.google.com/file/d/1wOlUFhtTciZ_0tnm-FfhI31k9NXAOkus/view?usp=sharing
