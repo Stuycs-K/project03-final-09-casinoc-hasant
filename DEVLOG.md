@@ -56,6 +56,16 @@ This document must be updated daily by EACH group member.
 - Keeps answer word to the same server/client instead of communicating it to the other person
 - (2 hours)
 
+### 2024-01-18 - Finished base game operations
+- Added ability to run game with two players simultaneously
+- Fixed wordle function to allow for niche cases like letters being in the word multiple times
+- (3 hours)
+
+### 2024-01-20 - Finished
+- Revised how cowsay and dragon speaking are implemented into game
+- Recorded video and uploaded
+- (1 hours)
+
 ## Tanzeem Hasan
 
 ### 2024-01-06 - Project Proposal
